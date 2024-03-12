@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
 
-const generateToken = (res, userId) => {
+const createToken = (res, userId) => {
   const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
     expiresIn: "30d",
   });
 
-  res.cookie("jwt", token, {
+  res.cookie("ecomm_jwt", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV !== "development",
     sameSite: "strict",
@@ -15,4 +15,4 @@ const generateToken = (res, userId) => {
   return token;
 };
 
-export default generateToken;
+export default createToken;
